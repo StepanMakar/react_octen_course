@@ -1,1 +1,8 @@
-const baseUrl = process.env.API_URL
+const baseURL = process.env.REACT_APP_API_URL;
+
+export const urls = {
+    users: '/users',
+    posts: '/posts'
+}
+
+export default baseURL;
