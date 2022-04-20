@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
-import {UserInfo, Users} from "./components";
-import {Posts} from "./components/Posts/Posts";
+
+import {UserInfo, Users, Posts} from "./components";
+
 
 const App = () => {
     const[user, setUser] = useState(null)
+    const[userIdForPosts, setUserIdForPost] = useState(null)
   return (
       <div>
-          <div>
-      <Users setUser={setUser}/>
-              {user && <UserInfo user = {user}/>}
+          <div className={``}>
+      <Users setUser={setUser} setUserIdForPost={setUserIdForPost}/>
+              {user && <UserInfo user = {user} setUserIdForPost={setUserIdForPost} />}
           </div>
-          <Posts/>
+          {userIdForPosts && <Posts userId={userIdForPosts}/>}
       </div>
   );
 };
