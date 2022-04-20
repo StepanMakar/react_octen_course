@@ -1,13 +1,22 @@
 import {useForm} from "react-hook-form";
 import {carService} from "../../service";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {joiResolver} from  "@hookform/resolvers/joi"
 import {carValidator} from "../../validators";
 
-const CarForm = ({setNewCar}) => {
+const CarForm = ({setNewCar, carForUpdate}) => {
 
     // const[formError, setFormError] = useState({}) Це для відображення валідації що нам шле бекенд
-    const {register, reset, handleSubmit, formState:{errors}} = useForm({resolver:joiResolver(carValidator), mode:"onTouched"})
+    const {register, reset, handleSubmit, formState:{errors}, setValue} = useForm({resolver:joiResolver(carValidator), mode:"onTouched"})
+
+    useEffect(() => {
+        if (carForUpdate) {
+            const {model, price, year} = carForUpdate;
+            setValue('model', model)
+            setValue('price', price)
+            setValue('year', year)
+        }
+    }, [carForUpdate])
 
     const submit = async (car) =>{
         try{
