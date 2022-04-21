@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import Users from "./components/User";
+import Posts from "./components/Post";
+import Comments from "./components/Comment";
+import './App.css'
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <div className={'main'}>
+          <div className={'block'}>
+              <Users/>
+          </div>
+          <hr/>
+          <div className={'block'}>
+              <Posts/>
+          </div>
+          <hr/>
+          <div className={'block'}>
+              <Comments/>
+          </div>
 
+      </div>
+  );
+};
 export default App;
