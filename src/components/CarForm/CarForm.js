@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {joiResolver} from  "@hookform/resolvers/joi"
 import {carValidator} from "../../validators";
 
-const CarForm = ({setNewCar, carForUpdate}) => {
+const CarForm = ({setNewCar, carForUpdate }) => {
 
     // const[formError, setFormError] = useState({}) Це для відображення валідації що нам шле бекенд
     const {register, reset, handleSubmit, formState:{errors}, setValue} = useForm({resolver:joiResolver(carValidator), mode:"onTouched"})
@@ -18,10 +18,16 @@ const CarForm = ({setNewCar, carForUpdate}) => {
         }
     }, [carForUpdate])
 
-    const submit = async (car) =>{
+    const mySubmit = async (car) =>{
         try{
-        const {data} = await carService.create(car);
-        setNewCar(data)
+            if (carForUpdate){
+                const {data} = await carService.updateById(carForUpdate.id, car);
+                setNewCar(data)
+            } else{
+                const {data} = await carService.create(car);
+                setNewCar(data)
+            }
+
         reset()
         }catch (e){
             // setFormError(e.response.data)
@@ -29,7 +35,7 @@ const CarForm = ({setNewCar, carForUpdate}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(mySubmit)}>
             <div> <label> Model: <input  type="text" {...register('model')} />  </label> </div>
             {errors.model && <span>{errors.model.message}</span>}
             {/*{formError.model && <span>{formError.model[0]}</span>}*/}
