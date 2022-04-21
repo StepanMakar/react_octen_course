@@ -1,23 +1,23 @@
-import Users from "./components/User";
-import Posts from "./components/Post";
-import Comments from "./components/Comment";
 import './App.css'
+import {Routes, Route, Navigate} from "react-router-dom"
+import {MainLayout} from './layouts/'
+import {HomePage, UsersPage, PostsPage, AboutPage,NotFoundPAge, SinglePage} from './page'
+
+
 const App = () => {
   return (
-      <div className={'main'}>
-          <div className={'block'}>
-              <Users/>
-          </div>
-          <hr/>
-          <div className={'block'}>
-              <Posts/>
-          </div>
-          <hr/>
-          <div className={'block'}>
-              <Comments/>
-          </div>
-
-      </div>
+      <Routes >
+     <Route path={'/'} element={<MainLayout/>}>
+         <Route index element={<Navigate to={'/home'}/>}/>
+         <Route path={'home'} element={<HomePage/>}/>
+         <Route path={'users'} element={<UsersPage/>}/>
+         <Route path={'posts'} element={<PostsPage/>}>
+             < Route path={':id'} element={<SinglePage/>}/>
+             </Route>
+         <Route path={'about'} element={<AboutPage/>}/>
+         <Route path={'*'} element={<NotFoundPAge/>}/>
+         </Route>
+      </Routes>
   );
 };
 export default App;
