@@ -4,8 +4,17 @@ import {usersServices} from "../../servisec";
 import {UserDetail} from "../../component";
 
 const SingleUser = () => {
+    const{state}=useLocation()
+    const [user, setUser] = useState()
     const{id}=useParams()
-    const{state:user}=useLocation()
+    useEffect(()=>{
+        if (!state) {
+            usersServices.getById(id).then(({data})=> setUser(data))
+        } else{
+            setUser(state)
+        }
+    },[id,state])
+
 
 
 
