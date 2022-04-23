@@ -1,11 +1,12 @@
-import {Link} from "react-router-dom";
+
+import {Button} from "../Button/button";
 
 const Post = ({post}) => {
     const { id, title} = post
     return(
         <div>
 
-            {id} - {title} <Link to={id.toString()} state={post}>get details</Link>
+            {id} - {title} <Button to={id.toString()} state={post}>get details</Button>
 
 
         </div>
