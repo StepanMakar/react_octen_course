@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import {postService} from "../../servisec";
 import {Post} from "../../component";
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import css from './postPage.module.css'
 
 
 const PostsPage = () => {
     const [posts, setPosts] = useState([])
+
     useEffect(() =>{
         postService.getAll().then(({data}) => setPosts(data))
         },

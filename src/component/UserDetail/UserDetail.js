@@ -1,11 +1,21 @@
+import {Button} from "../Button/button";
+
 const UserDetail = ({user}) =>{
-    const{id, name, username, email} = user
+    const{id, name, username, email, address:{street, city}} = user
     return(
         <div>
-            {id}. <h2>{name}</h2>
-            <h3>{username}</h3>
-            <h3>{email}</h3>
+            <div>ID: {id}</div>
+            <div>Name: {name}</div>
+            <div>Nick: {username}</div>
+            <div>Email: {email}</div>
+            <div>Street: {street}</div>
+            <div>City: {city}</div>
+
+            <Button to={'posts'}>Show User Post</Button>
+
         </div>
+
+
     )
 
 }
