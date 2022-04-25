@@ -1,9 +1,11 @@
 const UserPost = ({singlePost}) =>{
-const {  title, body } = singlePost
+const { userId ,title, body } = singlePost
     return(
         <div>
+
              {title}
             {body}
+            <hr/>
         </div>
     )
 }

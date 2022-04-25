@@ -16,7 +16,7 @@ const PostsUserPage = () =>{
     return(
 
         <div>
-            <div>{singlePosts && singlePosts.map((singlePost) => <UserPost singlePost={singlePost}/>)}  </div>
+            <div>{singlePosts && singlePosts.map((singlePost) => <UserPost key={singlePost.id} singlePost={singlePost}/>)}  </div>
 
         </div>
     )
